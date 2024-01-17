@@ -46,8 +46,8 @@ resource "aws_alb_target_group" "TestTargetGroup" {
 }
 
 
-# Important! Create a data value, to get the ids from the instances, and filter the tag value of elb_attachable=true. 
-# You can manually update the instances that you dont want to join ELB target with this value to false
+# Important! Create a data object to get the ids from the instances list. and filter the tag value of elb_attachable=true. 
+# You can manually update the instances that you dont want to join ELB target by setting this value to false on each instance
 
 data "aws_instances" "elb_attachable" {
   instance_tags = {

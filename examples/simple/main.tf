@@ -5,16 +5,14 @@ provider "aws" {
 data "aws_availability_zones" "available" {}
 
 locals {
-  name   = "ex-${basename(path.cwd)}"
-  region = "eu-west-1"
+  name   = "victor-test-vpc"
+  region = "ap-southeast-2"
 
   vpc_cidr = "10.0.0.0/16"
-  azs      = slice(data.aws_availability_zones.available.names, 0, 3)
+  azs      = slice(data.aws_availability_zones.available.names, 0, 2)
 
   tags = {
     Example    = local.name
-    GithubRepo = "terraform-aws-vpc"
-    GithubOrg  = "terraform-aws-modules"
   }
 }
 
@@ -29,7 +27,7 @@ module "vpc" {
   cidr = local.vpc_cidr
 
   azs             = local.azs
-  private_subnets = [for k, v in local.azs : cidrsubnet(local.vpc_cidr, 4, k)]
+  private_subnets = [for k, v in local.azs : cidrsubnet(local.vpc_cidr, 2, k)]
 
   tags = local.tags
 }

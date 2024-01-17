@@ -1,7 +1,7 @@
 # Code is in this directory:
 https://github.com/ac3cloud/terraform-aws-vpc/tree/dev/elb_attachment/examples/simple
 
-# Test the ELB attachment based on tag name
+# Test the ELB attachment based on EC2 tag value 
 
 1. Create a tag first for all exisitng EC2 instances.
 2. After apply terraform tag , adding lifecycle. Then apply again. This will disable terraform to detect the changes of this tag value in the future.
